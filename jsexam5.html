@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jsexam5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body onload="loaddata()" style="padding: 0px 80px;">
+    <h1>YHA Note App</h1>
+    <div class="input-group mb-3">
+        <input id="note" type="text" class="form-control" placeholder="Enter your note" aria-label="Recipient’s username" aria-describedby="button-addon2">
+        <button onclick="addnote()" class=" btn btn-outline-info px-5" type="button" id="button-addon2">Add Note</button>
+    </div>
+    <div class="d-flex justify-content-end mb-3">
+      <button onclick="ddd()" class="btn btn-outline-danger px-5 fs-5 fw-bold">All Delete Your Note</button>
+    </div>
+    
+    <div class="yournote">
+
+    </div>
+    <script>
+
+        function addnote(){
+          let nnote = JSON.parse(localStorage.getItem('Mynote')) || [];
+            let note = {
+            id : nnote.length+1,
+            text : document.getElementById('note').value,
+            qty : 1,
+           }
+           nnote.push(note);
+           localStorage.setItem('Mynote', JSON.stringify(nnote));
+           loaddata();
+          }
+
+        function loaddata(){
+          let nnote = JSON.parse(localStorage.getItem('Mynote')) || [];
+          let yournote = document.querySelector('.yournote');
+
+          yournote.innerHTML = '';
+          if(nnote.length == 0){
+            yournote.innerHTML = `<h2 class="text-center">Your note is empty</h2>`
+          }else{
+            nnote.forEach((item, index) => {
+              yournote.innerHTML += `
+                                    <div class="box  mb-3 p-2 d-flex justify-content-between align-items-center btn border border-light-subtle">
+                                      <div class="fw-sm fs-5">${item.text}</div>
+                                      <div>
+                                        <button class="btn btn-outline-secondary" type="button" onclick="mark(this)">Mark Important</button>
+                                        <button class="btn btn-outline-danger" type="button" onclick="ccc(${index})">Delete</button>
+                                      </div>
+                                    </div>`
+            });
+          }
+        }
+        
+        function mark(btn){
+          
+          let box = btn.closest('.box');
+          box.classList.toggle('bg-warning');
+        }
+
+        function ccc(index){
+          let nnote = JSON.parse(localStorage.getItem('Mynote')) || [];
+          nnote.splice(index, 1);
+          localStorage.setItem('Mynote', JSON.stringify(nnote));  
+          loaddata();
+        }
+
+        function ddd(){
+          localStorage.removeItem('Mynote')
+          loaddata();
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>

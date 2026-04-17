@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jsexam2</title>
+</head>
+<body>
+    <h1>Guess The Nuber</h1><br>
+    <p>Guess the number between 1-10</p><br>
+    <label for="num">Enter in guess:</label>
+    <input type="number" name="" id="num">
+    <button onclick="guess()">Submit guess</button>
+
+    <script>
+        
+        function guess(){
+            let num = document.getElementById('num').value;
+            let guess = Math.floor(Math.random() * 10) + 1;
+                if(num == guess){
+                    alert('Congratulatons!!! You guess corret number' + guess)
+                }else{
+                    alert("Congratulatons!!! You do not guess corret number" + guess)
+                }
+            
+            console.log(guess);
+        }
+    </script>
+</body>
+</html>

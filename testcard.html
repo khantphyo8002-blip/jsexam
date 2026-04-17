@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Dynamic Card Generator</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+.card {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+</style>
+</head>
+
+<body class="bg-light">
+
+<div class="container py-4">
+
+    <h2 class="mb-3 text-center">Dynamic Card Generator</h2>
+
+    <div class="mb-4 text-center">
+        <label class="form-label">Enter number of cards (max 12)</label>
+        <input 
+            type="number" 
+            id="num" 
+            class="form-control w-50 mx-auto"
+            placeholder="Example: 6"
+            onkeydown="handleEnter(event)">
+    </div>
+
+    <div class="row" id="cardRow"></div>
+
+</div>
+
+
+<script>
+
+function handleEnter(event){
+    if(event.key === "Enter"){
+        generateCards();
+    }
+}
+
+function generateCards(){
+
+    let num = document.getElementById("num").value;
+    let row = document.getElementById("cardRow");
+
+    // Clear old cards
+    row.innerHTML = "";
+
+    // Validation
+    if(num <= 0){
+        alert("Please enter a valid number");
+        return;
+    }
+
+    if(num > 12){
+        alert("Maximum 12 cards allowed");
+        num = 12;
+    }
+
+    for(let i = 1; i <= num; i++){
+
+        row.innerHTML += `
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img src="https://via.placeholder.com/300x180" class="card-img-top">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Card ${i}</h5>
+                    <p class="card-text">Dynamic generated card</p>
+                    <button class="btn btn-primary btn-sm">View</button>
+                </div>
+            </div>
+        </div>
+        `;
+    }
+}
+
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

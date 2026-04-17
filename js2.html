@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Guess Nuber</h2>
+    <p>Guess the number between 1-10</p>
+    <label for="num">Enter in guess</label>
+    <input type="number" name="" id="num">
+    <button onclick="guess()">Submit Number</button>
+    <script>
+        function guess(){
+            let num = document.getElementById('num').value;
+            let guess = Math.floor(Math.random() * 10) + 1;
+            if(num == guess){
+                alert("correct" + guess)
+            }else(
+                alert("incorrect" + guess)
+            )
+        }
+
+        console.log("Step 1:", Math.random());
+
+        console.log("Step 2:", Math.random() * 10);
+
+        console.log("Step 3:", Math.floor(Math.random() * 10));
+
+        console.log("Final:", Math.floor(Math.random() * 10) + 2);
+
+        let num = (Math.random() * 100)
+        console.log(num)
+
+    </script>
+</body>
+</html>

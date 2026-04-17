@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body onload="loaddata()" style="margin: 0px 100px;">
+    <h1>YHA Note</h1><br>
+    <div class="input-group mb-3">
+        <input id="note" type="text" class="form-control" placeholder="Enter your note" aria-label="Recipient’s username" aria-describedby="button-addon2">
+        <button onclick="addnote()" class=" btn btn-outline-info px-5" type="button" id="button-addon2">Add Note</button>
+    </div>
+    <div id="yournote">
+          
+
+    </div>
+    <script>
+      function addnote(){
+        let mynote = JSON.parse(localStorage.getItem("Mynote")) || [];
+        let note = {
+          id : mynote.length+1,
+          text : document.getElementById('note').value,
+          qty : 1,
+        }
+        mynote.push(note);
+        localStorage.setItem("Mynote", JSON.stringify(mynote));
+        loaddata();
+      }
+      
+      function loaddata(){
+        let mynote = JSON.parse(localStorage.getItem("Mynote")) || [];
+        let yournote = document.getElementById('yournote');
+        yournote.innerHTML = "";
+        mynote.forEach((item, index) => {
+          yournote.innerHTML += `<div class="box d-flex justify-content-between align-items-center p-2 mb-2 btn border border-light-subtle">
+                                    <div>${item.text}</div>
+                                    <div>
+                                      <button onclick="mark(this)" class="btn btn-outline-secondary">Mark Inportant</button>
+                                      <button onclick="ddd(${index})" class="btn btn-outline-danger">Delete</button>
+                                    </div>
+                                  </div>`
+        });
+      }
+      function mark(btn){
+        let box = btn.closest(".box");
+        box.classList.toggle('bg-warning');
+        localStorage.setItem('colorr', JSON.stringify(box));
+      }
+      function ddd(index){
+        let mynote = JSON.parse(localStorage.getItem("Mynote")) || [];
+        mynote.splice(index, 1)
+        localStorage.setItem("Mynote", JSON.stringify(mynote));
+        loaddata();
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>

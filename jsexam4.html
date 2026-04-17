@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jsexam4</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>UI Export Will Be Like</h1><br>
+    <h2 class="text-info text-center">Js Quiz</h2><br>
+    <div class="bg-info p-2 fs-4" onclick="choose()">choose</div>
+    <div class="radio d-none">
+      <div class="form-check ">
+        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault1">
+        <label class="form-check-label" for="radioDefault1">
+          Default radio
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="radioDefault" id="radioDefault2" checked>
+        <label class="form-check-label" for="radioDefault2">
+          Default checked radio
+        </label>
+      </div>
+    </div>
+    
+    
+    <script>
+      function choose(){
+        let radio = document.querySelector('.radio');
+        if(radio.classList.contains('d-none')){
+          radio.classList.remove('d-none');
+        }else{
+          radio.classList.add('d-none')
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </body>
+</html>

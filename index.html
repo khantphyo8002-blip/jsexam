@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toggle</title>
+</head>
+<body>
+    <div id="myBox" style="width:100px; height:100px; border:1px solid black;">
+    Hello
+</div>
+
+<button onclick="toggleBox()">Toggle Color</button>
+
+<script>
+function toggleBox() {
+    let box = document.getElementById('myBox');
+    box.classList.toggle('bg-warning'); // adds/removes 'bg-warning' class
+}
+</script>
+
+</body>
+</html>
